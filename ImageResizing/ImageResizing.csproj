@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Sources\Animated\animated-avif.avif" />
+    <None Remove="Sources\Animated\animated-gif.gif" />
+    <None Remove="Sources\Animated\animated-webp.webp" />
+    <None Remove="Sources\headphones.bmp" />
+    <None Remove="Sources\headphones.gif" />
+    <None Remove="Sources\headphones.jpg" />
+    <None Remove="Sources\headphones.png" />
+    <None Remove="Sources\headphones.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Sources\Animated\animated-gif.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Animated\animated-webp.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\headphones.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\headphones.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\headphones.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\headphones.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\headphones.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
+    <PackageReference Include="Magick.NET-Q8-x64" Version="13.10.0" />
+    <PackageReference Include="NetVips" Version="2.4.1" />
+    <PackageReference Include="NetVips.Native.win-x64" Version="8.15.2" />
+    <PackageReference Include="PhotoSauce.MagicScaler" Version="0.14.2" />
+    <PackageReference Include="PhotoSauce.NativeCodecs.Libwebp" Version="1.3.2-preview3" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+  </ItemGroup>
+
+</Project>
