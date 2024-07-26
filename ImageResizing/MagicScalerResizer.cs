@@ -1,4 +1,8 @@
 ﻿using PhotoSauce.MagicScaler;
+using PhotoSauce.NativeCodecs.Giflib;
+using PhotoSauce.NativeCodecs.Libheif;
+using PhotoSauce.NativeCodecs.Libjpeg;
+using PhotoSauce.NativeCodecs.Libpng;
 using PhotoSauce.NativeCodecs.Libwebp;
 
 namespace ImageResizing
@@ -24,6 +28,10 @@ namespace ImageResizing
             CodecManager.Configure(codecs =>
             {
                 codecs.UseLibwebp();
+                codecs.UseLibjpeg();
+                codecs.UseLibpng();
+                codecs.UseGiflib();
+                codecs.UseLibheif();
             });
 
             using var inputStream = new FileStream(sourceImagePath, FileMode.Open, FileAccess.Read);
@@ -47,7 +55,14 @@ namespace ImageResizing
                 };
 
                 if (isAnimated)
-                    settings.TrySetEncoderFormat(inputExtension == ".gif" ? ImageMimeTypes.Gif : ImageMimeTypes.Webp);
+                    settings.TrySetEncoderFormat(inputExtension switch
+                    {
+                        ".gif" => ImageMimeTypes.Gif,
+                        ".webp" => ImageMimeTypes.Webp,
+                        ".avifs" => ImageMimeTypes.Avif,
+                        ".avif" => ImageMimeTypes.Avif,
+                        _ => ImageMimeTypes.Gif
+                    });
 
                 var outputDirectory = Path.Combine(AppContext.BaseDirectory, "ResizedImages", "MagicScaler");
                 var outputPath = Path.Combine(outputDirectory, $"{fileName}_{size.width}x{size.height}{inputExtension}");
@@ -60,6 +75,9 @@ namespace ImageResizing
 
                 inputStream.Position = 0;
             }
+
+            //Console.WriteLine($"---SUCCESSFULLY RESIZED IMAGE FORMAT: {inputExtension}\n Animated: {isAnimated}---");
+
             inputStream.Close();
         }
     }

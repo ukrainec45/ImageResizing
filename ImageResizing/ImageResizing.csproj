@@ -9,20 +9,37 @@
 
   <ItemGroup>
     <None Remove="Sources\Animated\animated-avif.avif" />
+    <None Remove="Sources\Animated\animated-avif.avifs" />
     <None Remove="Sources\Animated\animated-gif.gif" />
     <None Remove="Sources\Animated\animated-webp.webp" />
+    <None Remove="Sources\example.avif" />
     <None Remove="Sources\headphones.bmp" />
     <None Remove="Sources\headphones.gif" />
     <None Remove="Sources\headphones.jpg" />
     <None Remove="Sources\headphones.png" />
     <None Remove="Sources\headphones.webp" />
+    <None Remove="Sources\Large\Animated\large-animated-gif.gif" />
+    <None Remove="Sources\Large\Animated\large-animated-webp.webp" />
+    <None Remove="Sources\Large\large.gif" />
+    <None Remove="Sources\Large\large.jpg" />
+    <None Remove="Sources\Large\large.png" />
+    <None Remove="Sources\Large\large.webp" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Sources\Animated\animated-avif.avif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Animated\animated-avif.avifs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sources\Animated\animated-gif.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Sources\Animated\animated-webp.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\example.avif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Sources\headphones.bmp">
@@ -40,14 +57,37 @@
     <EmbeddedResource Include="Sources\headphones.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Large\Animated\large-animated-gif.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Large\Animated\large-animated-webp.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Large\large.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Large\large.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Large\large.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sources\Large\large.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
     <PackageReference Include="Magick.NET-Q8-x64" Version="13.10.0" />
     <PackageReference Include="NetVips" Version="2.4.1" />
+    <PackageReference Include="NetVips.Extensions" Version="2.3.0" />
     <PackageReference Include="NetVips.Native.win-x64" Version="8.15.2" />
     <PackageReference Include="PhotoSauce.MagicScaler" Version="0.14.2" />
+    <PackageReference Include="PhotoSauce.NativeCodecs.Giflib" Version="5.2.2-preview2" />
+    <PackageReference Include="PhotoSauce.NativeCodecs.Libheif" Version="1.17.6-preview2" />
+    <PackageReference Include="PhotoSauce.NativeCodecs.Libjpeg" Version="3.0.2-preview2" />
+    <PackageReference Include="PhotoSauce.NativeCodecs.Libpng" Version="1.6.43-preview2" />
     <PackageReference Include="PhotoSauce.NativeCodecs.Libwebp" Version="1.3.2-preview3" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
     <PackageReference Include="SkiaSharp" Version="2.88.8" />

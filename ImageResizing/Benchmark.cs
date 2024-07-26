@@ -1,7 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnosers;
 
 namespace ImageResizing
 {
+    [MemoryDiagnoser]
     public class Benchmark
     {
         [Benchmark]

@@ -11,11 +11,11 @@ namespace ImageResizing
     {
         protected static readonly (int width, int height)[] sizes = new (int, int)[]
         {
-            (64, 64),
-            (214, 214),
+            //(64, 64),
+            //(214, 214),
             (328, 320),
-            (642, 320),
-            (1820, 1820),
+            //(642, 320),
+            //(1820, 1820),
         };
 
         protected static string[] GetImagePaths(string directoryPath)

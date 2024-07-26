@@ -21,48 +21,34 @@ namespace ImageResizing
             }
         }
 
-        public static void ResizeAnimatedGIFImage(string sourceImagePath)
+        public static void ResizeAnimatedImage(string sourceImagePath)
         {
             var inputExtension = Path.GetExtension(sourceImagePath);
             var fileName = Path.GetFileNameWithoutExtension(sourceImagePath);
             var outputExtension = inputExtension;
 
+            using var inputStream = File.OpenRead(sourceImagePath);
+            var image = Image.NewFromFile(sourceImagePath);
+
             foreach (var size in sizes)
             {
-                using var inputStream = File.OpenRead(sourceImagePath);
-
-                var image = Image.Gifload(sourceImagePath, -1);
                 var scale = GetScale(image.Width, image.Height, size.width, size.height);
-                int nFrames = (int)image.Get("n-pages");
-                Console.WriteLine($"Number of frames: {nFrames}");
+                using var thumb = Image.Thumbnail($"{sourceImagePath}[n=-1]", (int)(image.Width * scale), (int?)(image.Height * scale));
 
-                // List to hold resized frames
-                var resizedFrames = new List<Image>();
-
-                for (int i = 0; i < nFrames; i++)
-                {
-                    // Load the specific frame
-                    var frame = Image.Gifload(sourceImagePath, page: i);
-                    // Resize the frame
-                    var resizedFrame = frame.Resize(scale);
-                    resizedFrames.Add(resizedFrame);
-                }
-
-                var resizedImage = Image.Sum(resizedFrames.ToArray());
-
-                var outputDirectory = Path.Combine(AppContext.BaseDirectory, "ResizedImages", "NetVips", "Animated");
+                var outputDirectory = Path.Combine(AppContext.BaseDirectory, "ResizedImages", "NetVips");
                 var outputPath = Path.Combine(outputDirectory, $"{fileName}_{size.width}x{size.height}{outputExtension}");
 
                 Directory.CreateDirectory(Path.GetDirectoryName(outputPath));
                 using var outputStream = File.Open(outputPath, FileMode.OpenOrCreate);
-                resizedImage.WriteToStream(outputStream, outputExtension);
+                thumb.WriteToStream(outputStream, outputExtension);
 
                 outputStream.Close();
-                inputStream.Close();
+                inputStream.Position = 0;
             }
+            inputStream.Close();
         }
 
-        private static void ResizeImage(string sourceImagePath)
+        public static void ResizeImage(string sourceImagePath)
         {
             var inputExtension = Path.GetExtension(sourceImagePath);
             var fileName = Path.GetFileNameWithoutExtension(sourceImagePath);
